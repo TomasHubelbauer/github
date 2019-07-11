@@ -5,7 +5,7 @@
 The GitHub MarkDown renderer doesn't support either of the two protocols,
 so no interactive links in your MarkDown files.
 
-### `.gitmodules` through the web UI
+## `.gitmodules` through the web UI
 
 GitHub won't check the submodule out upon just creation of `.gitmodules`.
 A Git client needs to be used to checkout the submodule and push to the remote
