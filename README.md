@@ -1,5 +1,7 @@
 # GitHub Knowledge Base
 
+[**WEB**](https://tomashubelbauer.github.io/github)
+
 ## `javascript` (bookmarklet) and `data` links
 
 The GitHub MarkDown renderer doesn't support either of the two protocols,
@@ -39,3 +41,6 @@ documented two approaches:
 - Named remotes - this is fine, just need to remember to push both, but no non-Git objects
 - Overloaded `origin` - this should be fine as well, but again, no non-Git objects
 
+## SVGs in the README
+
+GitHub will render SVG files in the readme and even execute CSS animations in them.
