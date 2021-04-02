@@ -1,11 +1,13 @@
-# GitHub Knowledge Base
+# GitHub
 
-[**WEB**](https://tomashubelbauer.github.io/github)
-
-## `javascript` (bookmarklet) and `data` links
+## `javascript` (bookmarklet) and `data` protocols in MarkDown links
 
 The GitHub MarkDown renderer doesn't support either of the two protocols,
 so no interactive links in your MarkDown files.
+
+## `a[target="_blank"]` attribute support in MarkDown
+
+The `target` attribute is not supported in links made using the `a` tag.
 
 ## `.gitmodules` through the web UI
 
@@ -28,21 +30,32 @@ directory path.
 
 ## Sync with GitLab
 
-GitLab Enterprise has a built-in feature for 2-way synchonization, but it is paid.
+GitLab Enterprise has a paid built-in feature for 2-way synchonization:
 [Repository mirroring](https://docs.gitlab.com/ee/workflow/repository_mirroring.html)
 
-[Tomas Wood](https://gitlab.doc.ic.ac.uk/tw1509/github-gitlab-sync)
-made a tool which uses APIs and hooks to cross-synchonize repositories.
-This is an approach I will take as well. I will attempt to support non-Git objects as well.
+[Tomas Wood made a tool](https://gitlab.doc.ic.ac.uk/tw1509/github-gitlab-sync)
+which uses APIs and hooks to cross-synchonize repositories.
 
-[Steve Perkins](https://steveperkins.com/migrating-projects-from-github-to-gitlab/)
-documented two approaches:
+[Steve Perkins documented two approaches](https://steveperkins.com/migrating-projects-from-github-to-gitlab/):
 
-- Named remotes - this is fine, just need to remember to push both, but no non-Git objects
-- Overloaded `origin` - this should be fine as well, but again, no non-Git objects
+- Named remotes
+- Overloaded `origin`
+
+Of course neither will synchronize non-Git objects, such as PRs and issues.
 
 ## SVGs in the README
 
-GitHub will render SVG files in the readme and even execute CSS animations in them.
+GitHub will render SVG files in the readme and even play CSS animations in them.
 
-## To-Do
+## API Gotchas
+
+- There is `stargazers_count` and `watchers_count` on the repository model and
+  both are the same thing! The actual watchers are in `subscribers_count`
+- An individual repo's details will contain its watcher count, but the get-repos
+  endpoint will not return the `subscribers_count` field
+- The `open_issues_count` field on the repository model combines the number of
+  open issues and the number of open pull requests and there is no way to tell
+  the two apart just based on that model
+- The Activity API (events) does not have the right `payload.action` values or
+  even correct payload fields as documented:
+  https://github.com/TomasHubelbauer/tomashubelbauer/blob/main/index.js
